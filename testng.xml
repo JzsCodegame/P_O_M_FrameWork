@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Automation">
-  <test thread-count="5" name="Functional-Test">
+<suite name="Automation" parallel="tests">
+  <test thread-count="5" name="Functional-Test-Chrome">
     <classes>
       <class name="TestModel.RunSignIn"/>
+    </classes>
+  </test> <!-- Functional-Test -->
+  <test thread-count="5" name="Functional-Test-Firefox">
+    <classes>
+      <class name="Actions.keyboardActions"/>
     </classes>
   </test> <!-- Functional-Test -->
 </suite> <!-- Automation -->
