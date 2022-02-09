@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Automation" parallel="tests">
-  <test thread-count="5" name="Functional-Test-Chrome">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
     <classes>
-      <class name="TestModel.RunSignIn"/>
+      <class name="ListenersPack.captutreScreenShotonFailure"/>
+      <class name="ListenersPack.TestNGListnersExampleTests"/>
     </classes>
-  </test> <!-- Functional-Test -->
-  <test thread-count="5" name="Functional-Test-Firefox">
-    <classes>
-      <class name="Actions.keyboardActions"/>
-    </classes>
-  </test> <!-- Functional-Test -->
-</suite> <!-- Automation -->
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

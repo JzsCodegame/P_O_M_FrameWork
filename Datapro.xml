@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="dataProvider.excelldata"/>
+      <class name="dataProvider.DataProvider1"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Suite level – The parameters inside the <suite> tag of TestNG XML file will be a suite level parameter. -->
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TestSuite" thread-count="3" >
+<parameter name="author" value="Fahim" />
+<!--<parameter name="searchKey" value="Bangladesh" /> -->
+
+<test name="testGuru">
+<!--Test Level -The parameters inside the <Test> tag of testing XML file will be a Test level parameter.-->
+<parameter name="searchKey" value="Bangladesh" />
+<classes>
+<class name="parameter.DataProvider">
+</class>
+</classes>
+</test>
+</suite>

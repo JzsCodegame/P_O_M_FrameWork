@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SuiteParam">
+<parameter name="author" value="Guru99" />
+<parameter name="searchKey" value="India" /> 
+
+<test thread-count="5" name="TestParam1">
+<parameter name="author" value="Guru99" /> 
+<parameter name="searchKey" value="UK" />
+    <classes>
+      <class name="dataProvider.ParamTest1"/>
+    </classes>
+  </test> <!-- TestParam -->
+<test name="example1">
+
+    <groups>
+        <run>
+            <include name="A" />
+        </run>
+    </groups>
+
+    <classes>
+       <class
+        name="dataProvider.Test3" />
+    </classes>
+
+  </test>
+  
+   <test name="example2">
+
+    <groups>
+        <run>
+            <include name="B" />
+        </run>
+    </groups>
+
+    <classes>
+       <class
+        name="dataProvider.Test3" />
+    </classes>
+
+  </test>
+</suite> <!-- SuiteParam -->

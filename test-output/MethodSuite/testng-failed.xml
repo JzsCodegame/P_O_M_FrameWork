@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Failed suite [MethodSuite]" guice-stage="DEVELOPMENT">
+  <test parallel="tests" name="TestMethod(failed)">
+    <classes>
+      <class name="seleniumTestMethods.Actions1">
+        <methods>
+          <include name="actionset1"/>
+          <include name="setup"/>
+          <include name="config"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- seleniumTestMethods.Actions1 -->
+    </classes>
+  </test> <!-- TestMethod(failed) -->
+</suite> <!-- Failed suite [MethodSuite] -->

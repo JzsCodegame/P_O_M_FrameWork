@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="ValidationsGrops.Day1"/>
+      <class name="ValidationsGrops.Day2"/>
+      <class name="ValidationsGrops.Groups2"/>
+      <class name="ValidationsGrops.Groups1"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" thread-count="5">
+  <test  name="Test1">
+ <groups>
+         <run>
+         	<include name = "smoke0" />
+            <include name = "smoke2" />
+            <include name = "func.*" />
+            <exclude name = "Smoke.*"/>
+         </run>
+      </groups>
+     <classes>                 
+        <class name="groups.Groups1"/>
+        <class name="groups.Groups2"/>
+    </classes>
+  </test> <!-- Test -->
+
+</suite> <!-- Suite -->

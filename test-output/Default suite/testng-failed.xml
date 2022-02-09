@@ -3,12 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="Actions.keyboardActions">
+      <class name="dataProvider.Test3">
         <methods>
+          <include name="MethodC"/>
+          <include name="MethodB"/>
           <include name="config"/>
-          <include name="actionbuilder"/>
+          <include name="setup"/>
+          <include name="teardown"/>
         </methods>
-      </class> <!-- Actions.keyboardActions -->
+      </class> <!-- dataProvider.Test3 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

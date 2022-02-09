@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="classes" name="SuiteMethod">
+  <test thread-count="5" parallel="methods" name="TestMethod">
+    <classes>
+      <class name="seleniumTestMethods.Screenshot"/>
+      <class name="seleniumTestMethods.dragandDrop1"/>
+      <class name="seleniumTestMethods.Scrolling"/>
+      <class name="seleniumTestMethods.Actions2"/>
+      <class name="seleniumTestMethods.Actions1"/>
+      <class name="seleniumTestMethods.Datepicker1"/>
+      <class name="seleniumTestMethods.DragAndDrop"/>
+      <class name="seleniumTestMethods.tootltip"/>
+      <class name="seleniumTestMethods.UploadFile"/>
+      <class name="seleniumTestMethods.Datepicker2"/>
+      <class name="seleniumTestMethods.keyboardActions"/>
+    </classes>
+  </test> <!-- TestMethod -->
+</suite> <!-- SuiteMethod -->

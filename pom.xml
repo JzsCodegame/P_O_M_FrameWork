@@ -18,9 +18,25 @@
     <version>3.1.1</version>
 </dependency>
 <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>5.0.0</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>4.1.2</version>
+</dependency>
+
+<dependency>
 <groupId>org.seleniumhq.selenium</groupId>
 <artifactId>selenium-chrome-driver</artifactId>
 <version>3.141.59</version>
+</dependency>
+<dependency>
+  <groupId>ru.yandex.qatools.ashot</groupId>
+  <artifactId>ashot</artifactId>
+  <version>1.5.4</version>
 </dependency>
 <dependency>
 <groupId>io.github.bonigarcia</groupId>
@@ -87,17 +103,7 @@
 <groupId>org.apache.maven.plugins</groupId>
 <artifactId>maven-help-plugin</artifactId>
 <version>2.1.1</version>
-<executions>
-<execution>
-<phase>generate-resources</phase>
-<goals>
-<goal>effective-pom</goal>
-</goals>
-<configuration>
-<output>${project.build.outputDirectory}/META-INF/maven/${project.groupId}/${project.artifactId}/effective-pom.xml</output>
-</configuration>
-</execution>
-</executions>
+
 </plugin>
 <plugin>
 <groupId>org.apache.maven.plugins</groupId>
@@ -105,7 +111,7 @@
 <version>3.0.0-M5</version>
 <configuration>
 <suiteXmlFiles>
-<suiteXmlFile>******</suiteXmlFile>
+<suiteXmlFile>pom_suite.xml</suiteXmlFile>
 </suiteXmlFiles>
 </configuration>
 </plugin>

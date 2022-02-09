@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Sample Test Suite">
+  
+ <listeners>
+           <listener class-name="ListenersPack.RetryListenerClass"/>
+             <listener class-name="ListenersPack.RetryListenerClass"/>
+ </listeners>
+ <test name="VerifycurrentUrl()" >
+         <classes>
+         <class name="ListenersPack.TestNGListnersExampleTests" />
+         </classes>
+  </test> 
+ <test name="VerifyText()" >
+    <classes>
+      <class name="ListenersPack.TestNGExampleTests"/>
+    </classes>
+    </test> <!-- Test -->
+  
+   </suite> <!-- Sample Test Suite -->

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test name="Test(failed)">
+    <groups>
+      <run>
+        <include name="A"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="dataProvider.Test3">
+        <methods>
+          <include name="MethodB" invocation-numbers="0 1 2"/>
+          <include name="setup"/>
+          <include name="setup"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- dataProvider.Test3 -->
+    </classes>
+  </test> <!-- Test(failed) -->
+  <test name="Test2(failed)">
+    <groups>
+      <run>
+        <include name="B"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="dataProvider.Test3">
+        <methods>
+          <include name="MethodC"/>
+          <include name="setup"/>
+          <include name="setup"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- dataProvider.Test3 -->
+    </classes>
+  </test> <!-- Test2(failed) -->
+</suite> <!-- Failed suite [Suite] -->

@@ -1,5 +1,9 @@
 package TestModel;
 
+import org.testng.annotations.Test;
+
+import basemodel.BaseClass;
+
 import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.BeforeTest;
@@ -12,13 +16,13 @@ public class RunSignIn extends BaseClass {
 	@BeforeTest
 	
 	public void setup() {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+		edgedriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		edgedriver.manage().window().maximize();
 	}
 	
 	@Test
 	public void openurl() {
-		driver.get("http://automationpractice.com/index.php");
+		edgedriver.get("http://automationpractice.com/index.php");
 	}
 
 }
