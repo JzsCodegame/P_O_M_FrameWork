@@ -111,7 +111,7 @@
 <version>3.0.0-M5</version>
 <configuration>
 <suiteXmlFiles>
-<suiteXmlFile>pom_suite.xml</suiteXmlFile>
+<suiteXmlFile>DataProviderXML/ParamTest1.xml</suiteXmlFile>
 </suiteXmlFiles>
 </configuration>
 </plugin>

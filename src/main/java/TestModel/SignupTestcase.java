@@ -49,20 +49,27 @@ public class SignupTestcase extends BaseClass  {
 		
 	}
 
-	@Test(priority=1, dataProvider="Test1",dataProviderClass = DataproviderClassStorage.class)
-	public void Fill_SignUp_Form(String key) {
-		//getDataForPom X= new getDataForPom();
+	@Test(priority=1)
+	public void Enteremail() {
 		
-		SignInForm.fillSignup(key);//"xel@gmail.com" , "Jimmy", "Randall", "Randall2020"/*,"sinputDays"*/);//Positive testing 
-		
-		//public void Fill_SignUp_Form1() 2nd Attempt with Information
-		//SignInForm.fillSignup("xel@gmail.comm" , "Jimmy20", "Randall20", "Randall2020"/*,"sinputDays"*/); //Negative Testing
-}
-	@Test(priority=2)
-	public void Fill_SignUp_Form1() {
-		
-		SignInForm.selectDays("15");
+		SignInForm.setEmail(null);
 	}
 	
+	
+	
+	}
+//@Test()
+//public void Fill_SignUp_Form(String key) {
+	//getDataForPom X= new getDataForPom();
+	
+	//SignInForm.fillSignup(key);//"xel@gmail.com" , "Jimmy", "Randall", "Randall2020"/*,"sinputDays"*/);//Positive testing 
+	
+	//public void Fill_SignUp_Form1() 2nd Attempt with Information
+	//SignInForm.fillSignup("xel@gmail.comm" , "Jimmy20", "Randall20", "Randall2020","sinputDays"); //Negative Testing
 
-}
+//@Test(priority=2)
+//public void Fill_SignUp_Form1() {
+	
+	//SignInForm.selectDays("15");
+
+  

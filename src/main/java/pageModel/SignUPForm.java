@@ -107,10 +107,10 @@ public String getSignInTitle() {
     return driver.getTitle();
   }
   
+@Test(priority =1,dataProvider="ParamTest1", dataProviderClass = DataproviderClassStorage.class)
+public void setEmail(String email) {
 
-public void setEmail(String EmailString) {
-
-  EmailAddress.sendKeys(EmailString);
+  EmailAddress.sendKeys(email);
    
 
 }

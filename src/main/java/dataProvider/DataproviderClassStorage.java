@@ -86,5 +86,26 @@ public class DataproviderClassStorage {
             	return groupArray;		
             	}
 
+                @DataProvider(name = "Test5")  
+
+                public Object[ ][ ] loginData()  
+
+                {  
+
+                  Object[ ][ ] data = new Object[2][2];  
+
+                   data[0][0] = "1st username";  
+
+                   data[0][1] = "1st password";  
+
+                   data[1][0] = "2nd username";  
+
+                   data[1][1] = "2nd password";  
+
+                    return data;  
+
+                  }       
+                
+                
 }            
 
