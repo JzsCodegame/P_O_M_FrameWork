@@ -11,9 +11,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
-import com. thoughtcoders.automation.Base;
-
 import basemodel.BaseClass;
 import io.github.bonigarcia.wdm.WebDriverManager;
 

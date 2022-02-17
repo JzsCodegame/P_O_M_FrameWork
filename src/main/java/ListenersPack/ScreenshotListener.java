@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.testng.*;
 
 public class ScreenshotListener extends TestListenerAdapter {
-    @Override
+   /* @Override
     public void onTestFailure(ITestResult result) {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
@@ -25,5 +25,5 @@ public class ScreenshotListener extends TestListenerAdapter {
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 }

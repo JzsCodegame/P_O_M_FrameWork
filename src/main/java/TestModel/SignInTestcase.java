@@ -21,7 +21,7 @@ import pageModel.SignInformPage;
 
 @Test
 public class SignInTestcase extends BaseClass  {
-
+/*
     //String driverPath = "C:\\geckodriver.exe";
     
  // WebDriver driver;
@@ -46,7 +46,9 @@ public class SignInTestcase extends BaseClass  {
 
      */
 
-@Test(priority=0)
+/* 
+ * @Test(priority=0)
+ 
 
     public void test_Page_Appear_Correct() {
 
@@ -84,5 +86,6 @@ public class SignInTestcase extends BaseClass  {
     	Assert.assertTrue(objHomePage.getSignInTitle().toLowerCase().contains(""));
     //Verify home page
     	
-    }*/
-
+   
+    */
+}

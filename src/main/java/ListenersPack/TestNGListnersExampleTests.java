@@ -33,7 +33,7 @@ import org.testng.AssertJUnit;
 
 	          //  @BeforeClass
 
-	            public void setup() {
+	        //    public void setup() {
 
 	//System.setProperty("webdriver.chrome.driver", "C:\\Users\\jzo_0\\eclipse-workspace\\01.Testng\\chromedriver.exe");
 

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import basemodel.BaseClass;
 
 public class SignUp_ColorStreet extends BaseClass {
-
+/*
 @BeforeTest
 	
 	public void setup() {
@@ -26,7 +26,7 @@ public class SignUp_ColorStreet extends BaseClass {
 		driver.findElement(By.xpath());
 	}
 	
-
+*/
 }
 
 	

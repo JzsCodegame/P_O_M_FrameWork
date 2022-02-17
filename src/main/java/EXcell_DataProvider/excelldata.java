@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class excelldata {
 
 
-
+/*
 @BeforeMethod
 public void beforeMethod(){
     System.out.println("Call to login to the application");
@@ -39,5 +39,5 @@ System.out.println(type);
 System.out.println(unit);
 
 System.out.println("CREATED wf");
-}
+}*/
 }

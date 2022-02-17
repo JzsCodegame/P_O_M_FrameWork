@@ -33,17 +33,17 @@ public class dragandDrop1 extends BaseClass {
               driver.get(baseUrl);           
               WebElement source = driver.findElement(By.linkText("Home"));
               //find target same way as bottom page
-              /*WebElement td_Home = driver
+             WebElement td_Home = driver
                       .findElement(By
                       .xpath("//html/body/div"
                       + "/table/tbody/tr/td"
                       + "/table/tbody/tr/td"
                       + "/table/tbody/tr/td"
                       + "/table/tbody/tr"));    
-               */
+               
               Actions builder = new Actions(driver);
               Action mouseOverHome = builder
-                      .moveToElement(link_Home)
+                      .moveToElement(td_Home)
                       .build();
                
               String bgColor = td_Home.getCssValue("background-color");
