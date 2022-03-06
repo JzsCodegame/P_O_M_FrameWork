@@ -1,4 +1,4 @@
-package TestModel;
+/*package TestModel;
 
 
 import org.testng.Assert;
@@ -41,7 +41,7 @@ public void Setup () {
 
 
 
-@Test(dataProvider = "data-provider")
+@Test()
 public void OpenSignInPage () {
 
     y = new Dayy1(driver);
@@ -56,3 +56,4 @@ public void OpenSignInPage () {
 
     }
 }
+*/

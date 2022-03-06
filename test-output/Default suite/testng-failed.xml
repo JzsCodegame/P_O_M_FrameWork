@@ -5,7 +5,7 @@
     <classes>
       <class name="TestModel.SignupTestcase">
         <methods>
-          <include name="Enteremail"/>
+          <include name="Fill_SignUp_Form"/>
           <include name="config"/>
           <include name="setup"/>
           <include name="teardown"/>

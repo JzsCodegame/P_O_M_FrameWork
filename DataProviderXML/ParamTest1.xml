@@ -40,4 +40,16 @@
     </classes>
 
   </test>
+   <test name="example3">
+   <classes>
+       <class
+        name="dataProvider.Test1" />
+        <class
+        name="dataProvider.Test2" />
+        <class
+        name="dataProvider.Test3" />
+        <class
+        name="dataProvider.Test4" />
+    </classes>
+    </test>
 </suite> <!-- SuiteParam -->

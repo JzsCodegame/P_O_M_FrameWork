@@ -107,7 +107,7 @@ public String getSignInTitle() {
     return driver.getTitle();
   }
   
-@Test(priority =1,dataProvider="ParamTest1", dataProviderClass = DataproviderClassStorage.class)
+
 public void setEmail(String email) {
 
   EmailAddress.sendKeys(email);
@@ -151,8 +151,8 @@ public void selectDays(String sinputDays) {
 	Select sinput = new Select(Days);
 	sinput.selectByValue(sinputDays);
 }
-@Test(priority=1, dataProvider="Test1",dataProviderClass = DataproviderClassStorage.class)
-public void fillSignup(String data,String EmailString, String FirstName, String LastName, String PassWord/*,String sinputDays*/) {
+
+public void fillSignup(String EmailString, String FirstName, String LastName, String PassWord) {
 	//char[] helloArray = { 'x', 'e', 'l', '@', 'g', 'm','a','i','l','.','c','o','m'};
 	//helloString = new String(helloArray); 
 

@@ -22,9 +22,10 @@ public class SignupTestcase extends BaseClass  {
 
     SignInformPage objHomePage;
     
-    SignUPForm SignInForm;
+    SignUPForm SignUp;
     SignINForm Login;
     
+	
 	
 
 
@@ -33,14 +34,13 @@ public class SignupTestcase extends BaseClass  {
     public void Test_SignUp_Appears() {
 
         //Create Login Page object
-		  driver.get("http://automationpractice.com/index.php");
+		  driver.get(BaseUrl);
 		
-		Login = new SignINForm(driver);
-		SignInForm = new SignUPForm(driver);
+		  Login = new SignINForm(driver);
 		//Verify login page title
 		
-		//Login.openSignup();
-		Login.clickSignIn();
+		Login.openSignup();
+		
 		
 		
 		String signuppageTitle = Login.getFormpageTitle();
@@ -49,27 +49,10 @@ public class SignupTestcase extends BaseClass  {
 		
 	}
 
-	@Test(priority=1)
-	public void Enteremail() {
-		
-		SignInForm.setEmail(null);
-	}
-	
-	
-	
-	}
-//@Test()
-//public void Fill_SignUp_Form(String key) {
-	//getDataForPom X= new getDataForPom();
-	
-	//SignInForm.fillSignup(key);//"xel@gmail.com" , "Jimmy", "Randall", "Randall2020"/*,"sinputDays"*/);//Positive testing 
-	
-	//public void Fill_SignUp_Form1() 2nd Attempt with Information
-	//SignInForm.fillSignup("xel@gmail.comm" , "Jimmy20", "Randall20", "Randall2020","sinputDays"); //Negative Testing
+@Test(priority=1)
+public void Fill_SignUp_Form() {
+	 SignUp = new SignUPForm(driver);
+	 SignUp.fillSignup("xel@gmail.com", "Jimmy", "Randall", "Randall2020");
 
-//@Test(priority=2)
-//public void Fill_SignUp_Form1() {
-	
-	//SignInForm.selectDays("15");
-
-  
+}
+}

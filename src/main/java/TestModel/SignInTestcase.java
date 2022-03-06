@@ -1,4 +1,4 @@
-package TestModel;
+/*package TestModel;
 
 
 import java.util.concurrent.TimeUnit;
@@ -20,11 +20,11 @@ import pageModel.SignInformPage;
 
 
 @Test
-public class SignInTestcase extends BaseClass  {
-/*
+public class SignInTestcase extends BaseClass {
+
     //String driverPath = "C:\\geckodriver.exe";
     
- // WebDriver driver;
+ WebDriver driver;
 
     SignInPage objLogin;
 
@@ -34,7 +34,7 @@ public class SignInTestcase extends BaseClass  {
     //2nd Method
     SignUPForm SignInForm;
     SignINForm Login;
-/**
+/*
 
      * This test case will login in http://demo.guru99.com/V4/
 
@@ -88,4 +88,4 @@ public class SignInTestcase extends BaseClass  {
     	
    
     */
-}
+
