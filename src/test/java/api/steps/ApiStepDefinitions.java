@@ -1,0 +1,83 @@
+package api.steps;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.testng.Assert;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class ApiStepDefinitions {
+
+    private String endpoint;
+    private int statusCode;
+    private String responseBody;
+
+    @Given("^the API endpoint is \"([^\"]*)\"$")
+    public void the_api_endpoint_is(String endpoint) {
+        this.endpoint = endpoint;
+    }
+
+    @When("^I send a GET request$")
+    public void i_send_a_get_request() throws Exception {
+        HttpURLConnection connection = null;
+        try {
+            URL url = new URL(endpoint);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(15000);
+            connection.setReadTimeout(15000);
+
+            statusCode = connection.getResponseCode();
+
+            InputStream stream;
+            if (statusCode >= 200 && statusCode < 400) {
+                stream = connection.getInputStream();
+            } else {
+                stream = connection.getErrorStream();
+            }
+
+            if (stream == null) {
+                responseBody = "";
+                return;
+            }
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+            StringBuilder bodyBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                bodyBuilder.append(line);
+            }
+            reader.close();
+            responseBody = bodyBuilder.toString();
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+    }
+
+    @Then("^the API response status code should be (\\d+)$")
+    public void the_api_response_status_code_should_be(int expectedStatusCode) {
+        Assert.assertEquals(statusCode, expectedStatusCode, "Unexpected API status code");
+    }
+
+    @And("^the API response should contain \"([^\"]*)\"$")
+    public void the_api_response_should_contain(String expectedText) {
+        Assert.assertTrue(responseBody.contains(expectedText),
+                "Expected response body to contain: " + expectedText + ". Actual body: " + responseBody);
+    }
+
+    @And("^the API response JSON should contain all products list$")
+    public void the_api_response_json_should_contain_all_products_list() {
+        Assert.assertTrue(responseBody != null && responseBody.length() > 0, "Response body is empty");
+        Assert.assertTrue(responseBody.contains("products"),
+                "Expected response body to contain products list JSON. Actual body: " + responseBody);
+    }
+}

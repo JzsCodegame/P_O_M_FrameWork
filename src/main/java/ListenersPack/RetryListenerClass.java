@@ -6,24 +6,15 @@ package ListenersPack;
 
 	import org.testng.IAnnotationTransformer;
 
-	import org.testng.IRetryAnalyzer;
-
 	import org.testng.annotations.ITestAnnotation;
 
 public class RetryListenerClass implements IAnnotationTransformer {
 
-	 @Override
+		 @Override
 
-	 public void transform(ITestAnnotation testannotation, Class testClass, Constructor testConstructor, Method testMethod) {
+		 public void transform(ITestAnnotation testannotation, Class testClass, Constructor testConstructor, Method testMethod) {
+		 testannotation.setRetryAnalyzer(RetryFailedTestCases.class);
 
-	 IRetryAnalyzer retry = testannotation.getRetryAnalyzer();
-
-	 if (retry == null) {
-
-	 testannotation.setRetryAnalyzer(RetryFailedTestCases.class);
-
-	 }
-
-	  } 
-	 
+		  } 
+		 
 }
