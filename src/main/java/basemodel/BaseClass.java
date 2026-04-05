@@ -26,7 +26,7 @@ public class BaseClass {
 		@BeforeSuite()
 		public void config() {
 			
-			WebDriverManager.chromedriver().setup();
+			WebDriverManager.chromedriver().clearDriverCache().setup();
 			// Configure only the browser used by this suite to avoid failing on
 			// unnecessary driver downloads in restricted network environments.
 			driver = new ChromeDriver();
