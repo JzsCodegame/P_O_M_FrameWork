@@ -23,13 +23,13 @@ public class BaseClass {
 	public static String colorStreet;
 	public static WebDriverWait Ex;
 	public static JavascriptExecutor js1;
-	@BeforeSuite()
-	public void config() {
-		
-		WebDriverManager.chromedriver().setup();
-		WebDriverManager.firefoxdriver().setup();
-		WebDriverManager.edgedriver().setup();
-		driver = new ChromeDriver();
+		@BeforeSuite()
+		public void config() {
+			
+			WebDriverManager.chromedriver().setup();
+			// Configure only the browser used by this suite to avoid failing on
+			// unnecessary driver downloads in restricted network environments.
+			driver = new ChromeDriver();
 		//edgedriver = new EdgeDriver();
 		//driver_firefox = new FirefoxDriver();
 		//driver_firefox = new FirefoxDriver();
