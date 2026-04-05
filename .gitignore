@@ -1,0 +1,28 @@
+# --- Java / Maven build output ---
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# --- Test outputs / reports ---
+test-output/
+surefire-reports/
+failsafe-reports/
+
+# --- IDE settings ---
+.idea/
+.vscode/
+.settings/
+.classpath
+.project
+
+# --- Logs and temp files ---
+*.log
+*.tmp
+*.swp
+.DS_Store
+
+# --- Local artifacts / screenshots ---
+path/
+yourpath/

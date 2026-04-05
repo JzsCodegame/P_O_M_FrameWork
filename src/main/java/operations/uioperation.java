@@ -16,29 +16,29 @@ public class uioperation {
 		    public void perform(Properties read,String operation,String objectName,String objectType,String value) throws Exception{
 		        System.out.println("");
 		        switch (operation.toUpperCase()) {
-		        case "gotoUrl":
+		        case "GOTOURL":
 		            //Get url of application
 		        	driver.get(read.getProperty(value));
 		            break;
 		            
 		            
 		          //Perform click
-		        case "clickSign":
+		        case "CLICKSIGN":
 		        	driver.findElement(this.getObject(read,objectName,objectType)).click();
 		            
 		            break;
 		          
 		          //Get text of an element   
-		        case "OpenAuthenficatioin":
+		        case "OPENAUTHENFICATIOIN":
 		        	driver.getCurrentUrl();
 		        	break;
 		        
 		          //Set text on control
-		        case "typemail":
+		        case "TYPEMAIL":
 		            driver.findElement(this.getObject(read,objectName,objectType)).sendKeys(value);
 		            break;
 		          //Perform click
-		        case "clicksubmit":
+		        case "CLICKSUBMIT":
 		        	driver.findElement(this.getObject(read,objectName,objectType)).click();
 		            break;
 		            
@@ -68,7 +68,7 @@ public class uioperation {
 		      //find by ID
 		        else if(objectType.equalsIgnoreCase("ID")){
 		            
-		            return By.className(read.getProperty(objectName));
+		            return By.id(read.getProperty(objectName));
 		            
 		        }
 		        //find by class
