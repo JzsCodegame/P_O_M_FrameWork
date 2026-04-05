@@ -1,120 +1,199 @@
-# P_O_M_Framework Process Flow
+# P_O_M_Framework Process Flow (Updated)
 
-This document describes how automated tests in this repository execute end-to-end.
+This guide explains the **current end-to-end flow** of this Selenium + TestNG Page Object Model framework, with extra focus on:
 
-## 1) High-level execution flow
+- how we execute and test the framework,
+- how we open/view results,
+- and which tools we use day-to-day.
+
+## 1) End-to-end process flow
 
 ```mermaid
 flowchart TD
-    A[Start test run] --> B{How is suite started?}
-    B -->|mvn test| C[Surefire reads SignupTestcase.xml]
-    B -->|testng xml directly| D[Chosen suite XML under repo root]
+    A[Start] --> B{Trigger type}
+    B -->|mvn test| C[Maven Surefire]
+    B -->|Suite XML from IDE/CLI| D[TestNG runner]
 
-    C --> E[TestNG loads suite + test classes]
+    C --> E[Load suite XML]
     D --> E
 
-    E --> F[@BeforeSuite in BaseClass.config]
-    F --> G[WebDriverManager resolves drivers]
-    G --> H[ChromeDriver is created]
-    H --> I[@BeforeTest BaseClass.setup]
-    I --> J[Browser timeouts + window + wait configured]
+    E --> F[BaseClass @BeforeSuite config]
+    F --> G[WebDriverManager setup]
+    G --> H[Create browser driver]
+    H --> I[BaseClass @BeforeTest setup]
+    I --> J[Timeouts + maximize + waits]
 
-    J --> K[Test method in class under TestModel / other packages]
-    K --> L[Page Object methods perform actions]
-    L --> M[Assertions validate expected behavior]
+    J --> K[Execute test class methods]
+    K --> L[Call page objects]
+    L --> M[Perform assertions]
 
-    M --> N{Listeners enabled?}
-    N -->|Yes| O[Retry / screenshot listeners react on failures]
+    M --> N{Listener enabled?}
+    N -->|Yes| O[Retry / screenshot on failure]
     N -->|No| P[Continue]
 
     O --> P
-    P --> Q[TestNG builds reports in test-output]
-    Q --> R[@AfterSuite BaseClass.teardown]
-    R --> S[Driver quits and run ends]
+    P --> Q[Generate test-output reports]
+    Q --> R[BaseClass @AfterSuite teardown]
+    R --> S[Driver quit]
 ```
 
-## 2) Runtime components and responsibilities
+## 2) Framework architecture map
 
-| Layer | Responsibility | Key files |
+| Layer | Purpose | Main files |
 |---|---|---|
-| Build + runner | Defines dependencies/plugins and default suite file used by Maven test execution. | `pom.xml`, `SignupTestcase.xml` |
-| Base test lifecycle | Browser setup/teardown and shared driver objects. | `src/main/java/basemodel/BaseClass.java` |
-| Test scenarios | Business-level test flow (navigation, form actions, assertions). | `src/main/java/TestModel/SignupTestcase.java` |
-| Page objects | Encapsulate UI locators and operations using Selenium/PageFactory. | `src/main/java/pageModel/SignINForm.java`, `src/main/java/pageModel/SignUPForm.java` |
-| Object-repo style ops (alternate pattern) | Loads locator properties and performs keyword-style operations. | `src/main/java/operations/readobject.java`, `src/main/java/operations/uioperation.java` |
-| Execution configuration variants | Grouping, listeners, parallel modes, and data-provider suites. | `testng.xml`, `ListenersPack1.xml`, `Gropusng.xml`, `Datapro.xml`, `testmethod.xml` |
-| Reporting artifacts | TestNG output, emailable report, junit XML snapshots. | `test-output/` |
+| Build + dependency management | Controls dependencies, compiler, surefire suite wiring. | `pom.xml` |
+| Suite definitions | Defines what classes run, in what mode (parallel/groups/listeners). | `SignupTestcase.xml`, `testng.xml`, `ListenersPack1.xml`, `Datapro.xml`, `Gropusng.xml`, `testmethod.xml` |
+| Test lifecycle base | Creates driver, sets base URLs, handles setup/teardown. | `src/main/java/basemodel/BaseClass.java` |
+| Business test scenarios | Implements scenario steps/assertions. | `src/main/java/TestModel/SignupTestcase.java`, `src/main/java/TestModel/SignInTestcase.java`, `src/main/java/TestModel/RunSignUp.java`, `src/main/java/TestModel/RunSignIn.java` |
+| Page objects | Encapsulates element locators and actions. | `src/main/java/pageModel/SignINForm.java`, `src/main/java/pageModel/SignUPForm.java`, `src/main/java/pageModel/SignInPage.java`, `src/main/java/pageModel/SignInformPage.java` |
+| Keyword/object-repo utility path | Alternate keyword-driven operation model. | `src/main/java/operations/uioperation.java`, `src/main/java/operations/readobject.java` |
+| Outputs | HTML/XML results and historical run artifacts. | `test-output/`, `test-output/junitreports/` |
 
-## 3) Default Maven path (what runs by default)
-
-1. Run `mvn test`.
-2. Maven Surefire uses `SignupTestcase.xml` as suite input.
-3. TestNG runs `TestModel.SignupTestcase`.
-4. `BaseClass.config()` starts WebDriver and sets base URLs.
-5. `BaseClass.setup()` applies timeout/window/wait settings.
-6. `Test_SignUp_Appears` opens the automation practice URL and validates title after opening sign-in.
-7. `Fill_SignUp_Form` fills sign-up fields through `SignUPForm` page object methods.
-8. After execution, TestNG writes reports under `test-output/` and `BaseClass.teardown()` quits the browser.
-
-## 4) Detailed sequence for the sign-up scenario
+## 3) Primary sign-up sequence (default suite)
 
 ```mermaid
 sequenceDiagram
     participant Maven as Maven/Surefire
-    participant TestNG as TestNG Suite
+    participant TestNG as TestNG
     participant Base as BaseClass
-    participant Test as SignupTestcase
-    participant SignIn as SignINForm
-    participant SignUp as SignUPForm
-    participant Browser as ChromeDriver
+    participant Case as SignupTestcase
+    participant P1 as SignINForm
+    participant P2 as SignUPForm
+    participant Driver as ChromeDriver
 
-    Maven->>TestNG: Load SignupTestcase.xml
+    Maven->>TestNG: Read SignupTestcase.xml
     TestNG->>Base: @BeforeSuite config()
-    Base->>Browser: create ChromeDriver
+    Base->>Driver: new ChromeDriver()
     TestNG->>Base: @BeforeTest setup()
 
-    TestNG->>Test: Test_SignUp_Appears()
-    Test->>Browser: driver.get(BaseUrl)
-    Test->>SignIn: new SignINForm(driver)
-    Test->>SignIn: openSignup()
-    SignIn->>Browser: click "Sign in"
-    Test->>Browser: assert title contains "Login -"
+    TestNG->>Case: Test_SignUp_Appears()
+    Case->>Driver: get(BaseUrl)
+    Case->>P1: openSignup()
+    P1->>Driver: click Sign In
+    Case->>Driver: Assert title contains "Login -"
 
-    TestNG->>Test: Fill_SignUp_Form()
-    Test->>SignUp: new SignUPForm(driver)
-    Test->>SignUp: fillSignup(email, first, last, pwd)
-    SignUp->>Browser: enter email + click Create
-    SignUp->>Browser: set gender/first/last/password
+    TestNG->>Case: Fill_SignUp_Form()
+    Case->>P2: fillSignup(...)
+    P2->>Driver: Fill email + submit
+    P2->>Driver: Fill profile fields
 
     TestNG->>Base: @AfterSuite teardown()
-    Base->>Browser: quit()
+    Base->>Driver: quit()
 ```
 
-## 5) Alternate execution flows available in repo
+## 4) How we test this framework (emphasized)
 
-- **Listener + retry flow** (`ListenersPack1.xml` / `testng.xml`): registers listener classes to retry failed tests and optionally capture screenshots on failure.
-- **Grouped execution flow** (`testmethod.xml`, `Gropusng.xml`): runs selected TestNG groups or parallelized class/method execution.
-- **Data provider flow** (`Datapro.xml`, `DataProviderXML/ParamTest1.xml`): executes tests with externalized parameter sets.
+### A) Test execution modes
 
-## 6) Practical runbook
+1. **Default regression path**
+   - Command: `mvn test`
+   - Uses Surefire config in `pom.xml` and suite file `SignupTestcase.xml`.
 
-### Run default suite
+2. **Listener and retry validation**
+   - Run with `ListenersPack1.xml` or `testng.xml`.
+   - Useful for failure-handling behavior and automatic retry/screenshot logic.
+
+3. **Group-based testing**
+   - Use `Gropusng.xml` or `testmethod.xml`.
+   - Validates smoke/function groups and parallel behavior.
+
+4. **Data-driven testing**
+   - Use `Datapro.xml` and data-provider classes.
+   - Validates parameterized/iterative input handling.
+
+### B) What we verify in each run
+
+- **Driver lifecycle health**: browser starts once and closes cleanly.
+- **Navigation correctness**: app loads expected URL/pages.
+- **Element interaction stability**: form fields/buttons are discoverable and interactable.
+- **Assertion quality**: title/content checks fail loudly when behavior changes.
+- **Failure diagnostics**: retries and screenshots are produced when configured.
+- **Report generation**: HTML and XML reports are generated in `test-output/`.
+
+### C) Suggested practical validation checklist
+
+- Run default suite (`mvn test`).
+- Run one listener-enabled suite.
+- Run one group/parallel suite.
+- Confirm `test-output/index.html` is refreshed.
+- Confirm `test-output/junitreports/*.xml` exists for CI parsers.
+
+## 5) How to open and view reports + artifacts
+
+### A) Open TestNG HTML reports
+
+After a run, open these files in browser:
+
+- `test-output/index.html` (main dashboard)
+- `test-output/emailable-report.html` (shareable summary)
+
+Example (Linux):
 
 ```bash
+xdg-open test-output/index.html
+xdg-open test-output/emailable-report.html
+```
+
+### B) View XML outputs for CI/debug
+
+- `test-output/testng-results.xml`
+- `test-output/junitreports/TEST-*.xml`
+
+These files are useful for Jenkins/GitHub Actions test parsing and flaky test triage.
+
+### C) View screenshots from test runs
+
+Screenshot artifacts in this repository include:
+
+- `path/screenshot1.png`
+- `path/screenshot2.png`
+- `yourpath/screenshot3.png`
+
+Open locally with any image viewer, for example:
+
+```bash
+xdg-open path/screenshot1.png
+```
+
+## 6) Tools we use in this framework
+
+- **Maven**: dependency management and suite execution orchestration.
+- **TestNG**: test structure (`@BeforeSuite`, `@Test`, grouping, parallel, listeners).
+- **Selenium WebDriver**: browser automation actions/assertions.
+- **WebDriverManager**: automatic driver binary setup.
+- **Ashot**: screenshot support for visual captures.
+- **PageFactory + POM classes**: UI abstraction for maintainable selectors/actions.
+
+## 7) Common commands (quick runbook)
+
+```bash
+# 1) Compile only
+mvn -DskipTests compile
+
+# 2) Run default suite
 mvn test
+
+# 3) Clean + run
+mvn clean test
 ```
 
-### Run a specific suite file
+> Note: For non-default suites, run directly from your IDE TestNG runner or update Surefire `suiteXmlFiles` temporarily in `pom.xml`.
+
+## 8) Current caveats
+
+- `BaseClass` initializes Chrome by default; Firefox/Edge setup is present but commented.
+- A few XML files reference legacy class names/packages and may need cleanup before successful execution.
+- `readobject` expects `src/Objectrepo/repo1.properties`, while an existing properties file is under `src/main/java/framework/repo1.properties`.
+
+
+## 9) Open the SVG version of this process flow
+
+A clickable SVG version is included in the repository:
+
+- [Open `PROCESS_FLOW.svg`](./PROCESS_FLOW.svg)
+
+You can also open it locally from terminal:
 
 ```bash
-mvn -Dtestng.xml=ListenersPack1.xml test
+xdg-open PROCESS_FLOW.svg
 ```
-
-(If your Maven/TestNG setup ignores that property, run the suite directly from IDE or adjust Surefire suite configuration.)
-
-## 7) Notes and caveats
-
-- `BaseClass` currently initializes Chrome by default; Firefox/Edge setup lines are present but commented.
-- Some suite XML files reference classes/packages with naming mismatches (legacy examples), so not every XML is guaranteed to pass without cleanup.
-- `operations/readobject.java` expects an object repository at `src/Objectrepo/repo1.properties`, while a properties file is currently located at `src/main/java/framework/repo1.properties`.
-
