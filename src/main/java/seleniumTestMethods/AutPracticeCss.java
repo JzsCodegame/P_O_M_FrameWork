@@ -56,9 +56,9 @@ public static void main(String[] args) {
 			//Xpath Syntaxt 5   =  *use multiple attribute   
 			 					   //*[@attribute_name1='attribute_value1'][@attribute_name2='attribute_value2']]
 		    //Xpath Syntaxt 6    -   Syntax using OR :
-	    	                         //input[@id='login_1' OR @name='login’]
+	    	                         //input[@id='login_1' OR @name='login']
 			//Xpath Syntaxt 7    -   Syntax using AND :
-	    	                         //input[@id='login_1' AND @name='login’]*/
+	    	                         //input[@id='login_1' AND @name='login']*/
 			 
 			//Xpath 8  =          //tagname[starts-with(@attribute,'starting name of the attribute value')]
 			//Xpath 9  =          //*[@id='LastName']//following::input[@type='text']"
