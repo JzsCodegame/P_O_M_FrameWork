@@ -9,6 +9,7 @@
 <url>http://maven.apache.org</url>
 <properties>
 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<suiteXmlFile>SignupTestcase.xml</suiteXmlFile>
 </properties>
 <dependencies>
 <dependency>
@@ -122,10 +123,18 @@
 <version>3.0.0-M5</version>
 <configuration>
 <suiteXmlFiles>
-<suiteXmlFile>SignupTestcase.xml</suiteXmlFile>
+<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
 </suiteXmlFiles>
 </configuration>
 </plugin>
 </plugins>
 </build>
+<profiles>
+<profile>
+<id>api-only</id>
+<properties>
+<suiteXmlFile>suites/api-only/testng-api-only.xml</suiteXmlFile>
+</properties>
+</profile>
+</profiles>
 </project>
