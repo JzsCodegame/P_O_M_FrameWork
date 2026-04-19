@@ -14,3 +14,5 @@ Feature: API smoke checks
       | endpoint                                        | method | statusCode | expectedMessage                         |
       | https://automationexercise.com/api/productsList | GET    | 200        | products                                |
       | https://automationexercise.com/api/productsList | POST   | 405        | This request method is not supported.   |
+      
+      
