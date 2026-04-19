@@ -8,10 +8,10 @@ import java.net.URL;
 
 import org.testng.Assert;
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class ApiStepDefinitions {
 
@@ -26,11 +26,20 @@ public class ApiStepDefinitions {
 
     @When("^I send a GET request$")
     public void i_send_a_get_request() throws Exception {
+        sendRequest("GET");
+    }
+
+    @When("^I send a \"([^\"]*)\" request$")
+    public void i_send_a_request(String requestMethod) throws Exception {
+        sendRequest(requestMethod);
+    }
+
+    private void sendRequest(String requestMethod) throws Exception {
         HttpURLConnection connection = null;
         try {
             URL url = new URL(endpoint);
             connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
+            connection.setRequestMethod(requestMethod.toUpperCase());
             connection.setConnectTimeout(15000);
             connection.setReadTimeout(15000);
 
