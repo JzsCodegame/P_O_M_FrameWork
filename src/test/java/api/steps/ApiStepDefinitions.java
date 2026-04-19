@@ -26,11 +26,20 @@ public class ApiStepDefinitions {
 
     @When("^I send a GET request$")
     public void i_send_a_get_request() throws Exception {
+        sendRequest("GET");
+    }
+
+    @When("^I send a \"([^\"]*)\" request$")
+    public void i_send_a_request(String requestMethod) throws Exception {
+        sendRequest(requestMethod);
+    }
+
+    private void sendRequest(String requestMethod) throws Exception {
         HttpURLConnection connection = null;
         try {
             URL url = new URL(endpoint);
             connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
+            connection.setRequestMethod(requestMethod.toUpperCase());
             connection.setConnectTimeout(15000);
             connection.setReadTimeout(15000);
 
