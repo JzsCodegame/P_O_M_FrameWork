@@ -13,7 +13,6 @@ This folder is a dedicated variation that runs only API tests.
   ```bash
   mvn test -DsuiteXmlFile=suites/api-only/testng-api-only.xml
   ```
-
 ## Shareable Eclipse run configuration (no manual setup)
 
 A preconfigured Eclipse Maven launch file is checked in:
