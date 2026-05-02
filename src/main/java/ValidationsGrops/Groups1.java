@@ -46,11 +46,11 @@ WebElement Signin = driver.findElement(By.xpath("//*[@class='login']"));
 
 
 Signin.click();
-String expectedURL = "http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation";
-String expectedURL1 = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+String expectedURL = "https://automationexercise.com/?controller=authentication&back=my-account#account-creation";
+String expectedURL1 = "https://automationexercise.com/?controller=authentication&back=my-account";
 String actualURL = driver.getCurrentUrl();
 
-//String expectedURL1 = "http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation";
+//String expectedURL1 = "https://automationexercise.com/?controller=authentication&back=my-account#account-creation";
 //Assert.assertEquals(actualURL, expectedURL);
 if ( actualURL != expectedURL) {
 	AssertJUnit.assertEquals(actualURL, expectedURL1);

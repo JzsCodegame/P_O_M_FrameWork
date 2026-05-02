@@ -24,7 +24,7 @@ public class tooltip extends BaseClass {
 		
 		//http://demo.guru99.com/test/tooltip.html
 		//https://demoqa.com/automation-practice-form
-		//http://automationpractice.com/index.php
+		//https://automationexercise.com/
 		//http://webdriveruniversity.com/index.html
 		//https://www.phptravels.net/
 		
