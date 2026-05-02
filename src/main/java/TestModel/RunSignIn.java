@@ -22,7 +22,7 @@ public class RunSignIn extends BaseClass {
 	
 	@Test
 	public void openurl() {
-		edgedriver.get("http://automationpractice.com/index.php");
+		edgedriver.get("https://automationexercise.com/");
 	}
 
 }

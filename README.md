@@ -6,7 +6,7 @@ Selenium + TestNG automation framework using a Page Object Model (POM) style for
 
 This repository is primarily automating flows on:
 
-1. **Automation Practice**: `http://automationpractice.com/index.php`
+1. **Automation Practice**: `https://automationexercise.com/`
    - This is the main application under test for sign-in / sign-up style examples.
 2. **Color Street registration page**: `https://www.colorstreet.com/home/account/register`
    - Used by additional page-model/test classes for registration-related coverage.

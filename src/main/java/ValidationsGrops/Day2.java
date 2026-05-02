@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 
 @Test
 public class Day2 {
-	 public String baseUrl = "http://automationpractice.com/index.php";
+	 public String baseUrl = "https://automationexercise.com/";
 	    String driverPath = "C:\\Users\\jzo_0\\eclipse-workspace\\SElenium_4\\chromedriver.exe";
 	    public WebDriver driver; 
 
@@ -49,7 +49,7 @@ public void fillInSignupForm1() {
 	
 	
  Signin.click();
- String expectedURL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+ String expectedURL = "https://automationexercise.com/?controller=authentication&back=my-account";
  String actualURL = driver.getCurrentUrl();
  AssertJUnit.assertEquals(actualURL, expectedURL);
  

@@ -54,7 +54,7 @@ public class SignInTestcase extends BaseClass {
 
         //Create Login Page object
 	
-	  driver.get("http://automationpractice.com/index.php");
+	  driver.get("https://automationexercise.com/");
 
 	Login = new SignINForm(driver);
 
