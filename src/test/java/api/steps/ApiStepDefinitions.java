@@ -76,12 +76,21 @@ public class ApiStepDefinitions {
     public void the_api_response_status_code_should_be(int expectedStatusCode) {
         Assert.assertEquals(statusCode, expectedStatusCode, "Unexpected API status code");
     }
-
-    @And("^the API response should contain \"([^\"]*)\"$")
-    public void the_api_response_should_contain(String expectedText) {
-        Assert.assertTrue(responseBody.contains(expectedText),
-                "Expected response body to contain: " + expectedText + ". Actual body: " + responseBody);
+    
+    @Then("the API response should contain {string}")
+    public void the_api_response_should_contain(String expectedMessage) {
+        Assert.assertTrue(
+        		responseBody.contains(expectedMessage),
+                "Expected response body to contain: " + expectedMessage +
+                "\nActual response was: " + responseBody
+        );
     }
+    
+//    @And("^the API response should contain \"([^\"]*)\"$")
+//    public void the_api_response_should_contain(String expectedText) {
+//        Assert.assertTrue(responseBody.contains(expectedText),
+//                "Expected response body to contain: " + expectedText + ". Actual body: " + responseBody);
+//    }
 
     @And("^the API response JSON should contain all products list$")
     public void the_api_response_json_should_contain_all_products_list() {
