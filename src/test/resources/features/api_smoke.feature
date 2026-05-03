@@ -15,6 +15,6 @@ Feature: API smoke checks
       | https://automationexercise.com/api/productsList | GET    | 200        | products                                |
       | https://automationexercise.com/api/productsList | POST   | 200        | This request method is not supported.   |
       | https://automationexercise.com/api/brandsList   | GET    | 200        | {"responseCode": 200, "brands": [{"id": 1, "brand": "Polo"}, {"id": 2, "brand": "H&M"}  						|
-      
+      | https://automationexercise.com/api/verifyLogin  | DELETE | 200        | {"responseCode": 405, "message": "This request method is not supported."}  |
       
       
