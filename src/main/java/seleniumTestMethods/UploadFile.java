@@ -28,10 +28,17 @@ public class UploadFile extends BaseClass{
 		@Test
 		public void upload() {
 			driver.get("http://demo.guru99.com/test/upload/");
-			String filocation = "C:\\Users\\jzo_0\\Documents\\DevOps\\AWS-VPC.pdf";
+			String filocation = "C:\\Users\\Admin\\Documents\\Hello World.txt";
 			
 			driver.findElement(By.cssSelector("#uploadfile_0")).sendKeys(filocation);
 		
 	}
-	
+		@Test
+		public void upload2() {
+			driver.get("https://atom-php.onrender.com/upload.php");
+			String filocation = "C:\\Users\\Admin\\Documents\\Hello World.txt";  
+			
+			driver.findElement(By.cssSelector("#upload-file")).sendKeys(filocation);
+			
+	}
 }
