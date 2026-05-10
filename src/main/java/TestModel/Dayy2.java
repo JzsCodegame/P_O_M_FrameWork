@@ -32,7 +32,7 @@ public void Setup () {
 
    // driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
 
-    String URL1 = ("http://automationpractice.com/index.php");
+    String URL1 = ("https://automationexercise.com/");
 
     driver.get(URL1);
 
