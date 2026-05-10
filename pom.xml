@@ -136,11 +136,5 @@
 <suiteXmlFile>suites/api-only/testng-api-only.xml</suiteXmlFile>
 </properties>
 </profile>
-<profile>
-<id>selenium-all</id>
-<properties>
-<suiteXmlFile>suites/selenium-all/testng-selenium-all.xml</suiteXmlFile>
-</properties>
-</profile>
 </profiles>
 </project>

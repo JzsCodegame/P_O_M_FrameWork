@@ -35,7 +35,7 @@ public class BaseClass {
 		//driver_firefox = new FirefoxDriver();
 		//System.setProperty("webdriver.edge.driver", "msedgedriver.exe");
 	    //System.setProperty("webdriver.edge.driver", "msedgedriver.exe");
-		BaseUrl = "http://automationpractice.com/index.php";
+		BaseUrl = "https://automationexercise.com/";
 		colorStreet= "https://www.colorstreet.com/home/account/register";
 	    js1 = (JavascriptExecutor) driver;
 		

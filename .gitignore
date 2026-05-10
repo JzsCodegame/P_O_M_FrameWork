@@ -26,3 +26,4 @@ failsafe-reports/
 # --- Local artifacts / screenshots ---
 path/
 yourpath/
+/target

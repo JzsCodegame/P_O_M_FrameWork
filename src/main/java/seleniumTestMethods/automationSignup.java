@@ -39,7 +39,7 @@ import basemodel.BaseClass;
 				 
 				 WebDriverWait Ex =new WebDriverWait(driver, 5);
 
-				 String url1 = "http://automationpractice.com/index.php";	
+				 String url1 = "https://automationexercise.com/";	
 				 
 				 //String url2 = "http://the-internet.herokuapp.com/";
 				 
