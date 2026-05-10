@@ -7,6 +7,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -28,15 +30,26 @@ public class BaseClass {
 		@BeforeSuite()
 			public void config() {
 				
-				WebDriverManager.chromedriver().setup();
-				// Configure only the browser used by this suite to avoid failing on
-				// unnecessary driver downloads in restricted network environments.
-				ChromeOptions options = new ChromeOptions();
-				String chromeBinary = resolveChromeBinary();
-				if (chromeBinary != null) {
-					options.setBinary(chromeBinary);
+				String browser = System.getProperty("browser", "chrome").trim().toLowerCase();
+				if ("edge".equals(browser)) {
+					WebDriverManager.edgedriver().setup();
+					EdgeOptions edgeOptions = new EdgeOptions();
+					String edgeBinary = resolveEdgeBinary();
+					if (edgeBinary != null) {
+						edgeOptions.setBinary(edgeBinary);
+					}
+					driver = new EdgeDriver(edgeOptions);
+				} else {
+					WebDriverManager.chromedriver().setup();
+					// Configure only the browser used by this suite to avoid failing on
+					// unnecessary driver downloads in restricted network environments.
+					ChromeOptions options = new ChromeOptions();
+					String chromeBinary = resolveChromeBinary();
+					if (chromeBinary != null) {
+						options.setBinary(chromeBinary);
+					}
+					driver = new ChromeDriver(options);
 				}
-				driver = new ChromeDriver(options);
 		//edgedriver = new EdgeDriver();
 		//driver_firefox = new FirefoxDriver();
 		//driver_firefox = new FirefoxDriver();
@@ -91,6 +104,28 @@ public class BaseClass {
 		
 		private boolean isFilePresent(String path) {
 			return path != null && !path.trim().isEmpty() && new File(path).exists();
+		}
+		
+		private String resolveEdgeBinary() {
+			String binaryFromProperty = System.getProperty("edge.binary");
+			if (isFilePresent(binaryFromProperty)) {
+				return binaryFromProperty;
+			}
+			String binaryFromEnv = System.getenv("EDGE_BIN");
+			if (isFilePresent(binaryFromEnv)) {
+				return binaryFromEnv;
+			}
+			String[] macCandidates = new String[] {
+					"/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+					"/Applications/Microsoft Edge Beta.app/Contents/MacOS/Microsoft Edge Beta",
+					"/Applications/Microsoft Edge Dev.app/Contents/MacOS/Microsoft Edge Dev"
+			};
+			for (String candidate : macCandidates) {
+				if (isFilePresent(candidate)) {
+					return candidate;
+				}
+			}
+			return null;
 		}
 		
 	}

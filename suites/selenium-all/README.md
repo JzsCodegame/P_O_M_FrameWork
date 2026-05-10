@@ -8,6 +8,11 @@ This folder runs all TestNG tests under the `seleniumTestMethods` package.
   ```bash
   mvn test -Pselenium-all
   ```
+  
+  To run with Microsoft Edge instead of Chrome:
+  ```bash
+  mvn test -Pselenium-all -Dbrowser=edge
+  ```
 
 - Override suite file directly:
   ```bash
