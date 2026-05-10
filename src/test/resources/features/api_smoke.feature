@@ -4,8 +4,13 @@ Feature: API smoke checks
   So that we can quickly confirm service health and response contracts
 
   @api @smoke
-  Scenario: Validate all products list API
-    Given the API endpoint is "https://automationexercise.com/api/productsList"
-    When I send a GET request
-    Then the API response status code should be 200
-    And the API response JSON should contain all products list
+  Scenario Outline: Validate products API behavior for multiple methods
+    Given the API endpoint is "<endpoint>"
+    When I send a "<method>" request
+    Then the API response status code should be <statusCode>
+    And the API response should contain "<expectedMessage>"
+
+    Examples:
+      | endpoint                                        | method | statusCode | expectedMessage                         |
+      | https://automationexercise.com/api/productsList | GET    | 200        | products                                |
+      | https://automationexercise.com/api/productsList | POST   | 405        | This request method is not supported.   |

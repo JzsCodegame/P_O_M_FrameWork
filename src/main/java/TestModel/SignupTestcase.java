@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import basemodel.BaseClass;
 import dataProvider.DataproviderClassStorage;
+import framework.config.SignupDataConfig;
 import pageModel.SignINForm;
 import pageModel.SignInPage;
 import pageModel.SignInformPage;
@@ -31,10 +32,10 @@ public class SignupTestcase extends BaseClass  {
 
 	@Test(priority=0)
 
-    public void Test_SignUp_Appears() {
+	    public void Test_SignUp_Appears() {
 
-        //Create Login Page object
-		  driver.get(BaseUrl);
+	        //Create Login Page object
+			  driver.get(SignupDataConfig.get("base.url"));
 		
 		  Login = new SignINForm(driver);
 		//Verify login page title
@@ -49,10 +50,14 @@ public class SignupTestcase extends BaseClass  {
 		
 	}
 
-@Test(priority=1)
-public void Fill_SignUp_Form() {
-	 SignUp = new SignUPForm(driver);
-	 SignUp.fillSignup("xel@gmail.com", "Jimmy", "Randall", "Randall2020");
+	@Test(priority=1)
+	public void Fill_SignUp_Form() {
+		 SignUp = new SignUPForm(driver);
+		 SignUp.fillSignup(
+				 SignupDataConfig.get("signup.email"),
+				 SignupDataConfig.get("signup.firstName"),
+				 SignupDataConfig.get("signup.lastName"),
+				 SignupDataConfig.get("signup.password"));
 
-}
+	}
 }
