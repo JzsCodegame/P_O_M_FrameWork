@@ -1,9 +1,11 @@
 package basemodel;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
@@ -24,12 +26,17 @@ public class BaseClass {
 	public static WebDriverWait Ex;
 	public static JavascriptExecutor js1;
 		@BeforeSuite()
-		public void config() {
-			
-			WebDriverManager.chromedriver().setup();
-			// Configure only the browser used by this suite to avoid failing on
-			// unnecessary driver downloads in restricted network environments.
-			driver = new ChromeDriver();
+			public void config() {
+				
+				WebDriverManager.chromedriver().setup();
+				// Configure only the browser used by this suite to avoid failing on
+				// unnecessary driver downloads in restricted network environments.
+				ChromeOptions options = new ChromeOptions();
+				String chromeBinary = resolveChromeBinary();
+				if (chromeBinary != null) {
+					options.setBinary(chromeBinary);
+				}
+				driver = new ChromeDriver(options);
 		//edgedriver = new EdgeDriver();
 		//driver_firefox = new FirefoxDriver();
 		//driver_firefox = new FirefoxDriver();
@@ -53,11 +60,37 @@ public class BaseClass {
 		Ex =new WebDriverWait(driver, 10);
 	}
 	
-	@AfterSuite(alwaysRun = true)
-	public void teardown() {
+		@AfterSuite(alwaysRun = true)
+		public void teardown() {
 		if (driver != null) {
 			driver.quit();
 		}
+		}
+		
+		private String resolveChromeBinary() {
+			String binaryFromProperty = System.getProperty("chrome.binary");
+			if (isFilePresent(binaryFromProperty)) {
+				return binaryFromProperty;
+			}
+			String binaryFromEnv = System.getenv("CHROME_BIN");
+			if (isFilePresent(binaryFromEnv)) {
+				return binaryFromEnv;
+			}
+			String[] macCandidates = new String[] {
+					"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+					"/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+					"/Applications/Chromium.app/Contents/MacOS/Chromium"
+			};
+			for (String candidate : macCandidates) {
+				if (isFilePresent(candidate)) {
+					return candidate;
+				}
+			}
+			return null;
+		}
+		
+		private boolean isFilePresent(String path) {
+			return path != null && !path.trim().isEmpty() && new File(path).exists();
+		}
+		
 	}
-	
-}
